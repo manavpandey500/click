@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Be My Valentine 💖</title>
+    <title>Ashu, will you be my Valentine? 💖</title>
 
     <style>
         body {
@@ -24,11 +24,13 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             max-width: 420px;
             width: 90%;
+            position: relative;
         }
 
         .dog {
-            width: 180px;
+            width: 200px;
             margin-bottom: 15px;
+            border-radius: 15px;
         }
 
         h1 {
@@ -37,17 +39,20 @@
         }
 
         .sure-text {
-            color: #ff6b9d;
+            color: #ff2f73;
             font-size: 18px;
-            margin-bottom: 20px;
-            min-height: 25px;
+            margin: 15px 0;
+            min-height: 28px;
+            font-weight: 500;
         }
 
         .buttons {
             display: flex;
             justify-content: center;
             gap: 20px;
+            margin-top: 10px;
             position: relative;
+            height: 80px; /* gives space so buttons don’t overlap text */
         }
 
         button {
@@ -57,12 +62,14 @@
             font-size: 18px;
             cursor: pointer;
             transition: all 0.3s ease;
+            position: absolute;
         }
 
         #yesBtn {
             background: #ff4d88;
             color: white;
             font-weight: bold;
+            left: 30%;
             transform: scale(1);
         }
 
@@ -73,7 +80,7 @@
         #noBtn {
             background: #ddd;
             color: #333;
-            position: relative;
+            right: 30%;
         }
 
         #noBtn:hover {
@@ -85,11 +92,11 @@
             font-size: 20px;
             color: #ff4d88;
             display: none;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .signature {
-            margin-top: 10px;
+            margin-top: 12px;
             font-size: 18px;
             font-weight: bold;
             color: #ff2f73;
@@ -101,14 +108,14 @@
 
 <div class="container">
 
-    <!-- Cute Dog Image (Reliable Link) -->
+    <!-- Your Provided Dog Image -->
     <img 
         src="https://t4.ftcdn.net/jpg/01/32/37/11/240_F_132371198_OMS5zDgS7Pjy09nUyFT8cAHglSygqpR4.jpg" 
         alt="Cute Dog"
         class="dog"
     >
 
-    <h1>Will you be my Valentine? 💘</h1>
+    <h1>Ashu, will you be my Valentine? 💘</h1>
 
     <div class="sure-text" id="sureText"></div>
 
@@ -118,10 +125,10 @@
     </div>
 
     <div class="message" id="message">
-        My love, 💕<br><br>
-        Thank you for being my Valentine and for filling my life with
-        happiness, smiles, and endless love.  
-        Every moment with you is special, and I’m so lucky to have you. 🥰💞<br><br>
+        My dearest Ashu 💕<br><br>
+        You are the most beautiful part of my life.  
+        Every smile of yours makes my day brighter.  
+        I’m so lucky to have you and I promise to always cherish you. 🥰💞<br><br>
         Happy Valentine’s Day, my forever love ❤️🌹
 
         <div class="signature">
@@ -146,31 +153,28 @@
         "Think again… 😢",
         "Don’t break my heart 😭",
         "Last chance… 🥹",
-        "Okay… you have to say Yes now 😘"
+        "You can only say YES now 😘"
     ];
 
     noBtn.addEventListener("click", () => {
         noClicks++;
 
-        // Show "Are you sure" messages
         if (noClicks <= sureMessages.length) {
             sureText.textContent = sureMessages[noClicks - 1];
         }
 
-        // Increase Yes button size
+        // Grow Yes button
         yesSize += 0.35;
         yesBtn.style.transform = `scale(${yesSize})`;
 
-        // Move No button randomly
-        const x = Math.random() * 200 - 100;
-        const y = Math.random() * 200 - 100;
+        // Move No randomly within safe area
+        const randomX = Math.random() * 150 - 75;
+        const randomY = Math.random() * 40 - 20;
+        noBtn.style.transform = `translate(${randomX}px, ${randomY}px)`;
 
-        noBtn.style.transform = `translate(${x}px, ${y}px)`;
-
-        // Hide No button after many clicks
-        if (noClicks >= 7) {
+        // Hide No after multiple clicks
+        if (noClicks >= 6) {
             noBtn.style.display = "none";
-            sureText.textContent = "You can only say YES now 😍💖";
         }
     });
 
